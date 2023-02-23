@@ -15,6 +15,7 @@
     <description>manageable-redis-topics</description>
     <properties>
         <java.version>11</java.version>
+        <spring.maven.plugin>2.7.9</spring.maven.plugin>
     </properties>
     <dependencies>
         <dependency>
@@ -44,6 +45,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.maven.plugin}</version>
                 <configuration>
                     <excludes>
                         <exclude>
