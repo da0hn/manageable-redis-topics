@@ -18,10 +18,20 @@ public class TaskController {
 
   private final CreateLongTaskPublisher createLongTaskPublisher;
 
+  private final TaskRegister taskRegister;
+
   @PostMapping
   public ResponseEntity<SimpleMessage> create() {
     final var response = this.createLongTaskPublisher.publish();
     return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/{uuid}")
+  public ResponseEntity<Void> cancel(@PathVariable("uuid") final String uuid) {
+
+    this.taskRegister.removeTask(uuid);
+
+    return ResponseEntity.ok(null);
   }
 
 }
