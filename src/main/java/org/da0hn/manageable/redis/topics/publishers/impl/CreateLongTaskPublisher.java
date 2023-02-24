@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class CreateLongTaskPublisher implements Publisher {
+public class CreateLongTaskPublisher implements Publisher<SimpleMessage> {
 
   private final RedisTemplate<Object, Object> redisTemplate;
 
@@ -20,13 +20,14 @@ public class CreateLongTaskPublisher implements Publisher {
   public CreateLongTaskPublisher(@Qualifier("jsonRedisTemplate") final RedisTemplate<Object, Object> redisTemplate) {this.redisTemplate = redisTemplate;}
 
   @Override
-  public void publish() {
+  public SimpleMessage publish() {
     final var message = SimpleMessage.newInstance("Executar task longa! from: " + Thread.currentThread().getName());
     log.info("Enviando mensagem {} para o tópico {}", message, this.topic);
     this.redisTemplate.convertAndSend(
       this.topic,
       message
     );
+    return message;
   }
 
 }

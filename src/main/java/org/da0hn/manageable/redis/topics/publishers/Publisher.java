@@ -1,9 +1,8 @@
 package org.da0hn.manageable.redis.topics.publishers;
 
-public interface Publisher {
+@FunctionalInterface
+public interface Publisher<T> {
 
-
-  void publish();
-
+  T publish();
 
 }

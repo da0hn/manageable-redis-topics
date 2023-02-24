@@ -1,8 +1,12 @@
 package org.da0hn.manageable.redis.topics.controllers;
 
 import lombok.AllArgsConstructor;
+import org.da0hn.manageable.redis.topics.config.TaskRegister;
+import org.da0hn.manageable.redis.topics.messages.SimpleMessage;
 import org.da0hn.manageable.redis.topics.publishers.impl.CreateLongTaskPublisher;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +19,9 @@ public class TaskController {
   private final CreateLongTaskPublisher createLongTaskPublisher;
 
   @PostMapping
-  public ResponseEntity<Void> create() {
-    this.createLongTaskPublisher.publish();
-    return ResponseEntity.ok(null);
+  public ResponseEntity<SimpleMessage> create() {
+    final var response = this.createLongTaskPublisher.publish();
+    return ResponseEntity.ok(response);
   }
 
 }
