@@ -26,7 +26,7 @@ public class LongTaskTopicListener implements Listener<SimpleMessage> {
       data
     );
     final FutureTask<Void> task = new FutureTask<>(() -> {
-      this.asyncLongTask.execute();
+      this.asyncLongTask.execute(data);
       return null;
     });
     this.taskRegister.put(
