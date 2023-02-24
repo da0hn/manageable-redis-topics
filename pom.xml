@@ -16,6 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <spring.maven.plugin>2.7.9</spring.maven.plugin>
+        <jedis.version>4.3.1</jedis.version>
     </properties>
     <dependencies>
         <dependency>
@@ -25,6 +26,11 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
 
 
