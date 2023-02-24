@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  manageable-redis-topics:
+    image: redis
+    container_name: manageable-redis-topics
+    command: redis-server --requirepass 12345678 --appendonly yes
+    hostname: redis
+    restart: always
+    ports:
+      - "16379:6379"
+    volumes:
+      - ./docker-compose/volume/redis:/var/lib/postgresql/data
+    networks:
+      - manageable-redis-network
+networks:
+  manageable-redis-network:
+    name: manageable-redis-network
+    driver: bridge
