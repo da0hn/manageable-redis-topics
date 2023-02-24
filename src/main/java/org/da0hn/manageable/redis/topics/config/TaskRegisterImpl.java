@@ -7,6 +7,7 @@ import org.springframework.web.context.annotation.ApplicationScope;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.FutureTask;
 
@@ -49,6 +50,11 @@ public class TaskRegisterImpl implements TaskRegister {
   @Override
   public List<String> getKeys() {
     return new ArrayList<>(tasks.keySet());
+  }
+
+  @Override
+  public Set<Map.Entry<String, FutureTask<?>>> entrySet() {
+    return tasks.entrySet();
   }
 
 }
